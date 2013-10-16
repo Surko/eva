@@ -69,11 +69,11 @@ public class Main {
             outDir.mkdirs();
         }
 
-        for (int i = 0; i < repeats*2; i++) {
+        for (int i = 0; i < repeats; i++) {
             System.out.println("another");            
             run(i);            
         }
-        System.out.println("Best: "+ p/(repeats*2));
+        System.out.println("Best: "+ p/(repeats));
         
         StatsLogger.processResults(fitnessFilePrefix, fitnessStatsFile, repeats, maxGen, popSize);
         StatsLogger.processResults(objectiveFilePrefix, objectiveStatsFile, repeats, maxGen, popSize);

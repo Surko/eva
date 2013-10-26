@@ -1,22 +1,13 @@
-defaultDirectory='d:\cvicenia\eva\EVACV1\sga\';
+defaultDirectory='d:\cvicenia\eva\EVACV1\fitnesses\';
 fileNameCounted='sgaLog.fitness.';
-fileNameFitness='sgaLog.fitness_stats';
+originFitness='original.objective_stats';
+incgenFitness='incgen.objective_stats';
+incpopFitness='incpop.objective_stats';
+incpopgenFitness='incpopgen.objective_stats';
+originincsizeFitness='origincpop.objective_stats';
+incpopgensizeFitness='incpopgensize.objective_stats';
 
-populationSize=50;
-colIndex1=1;
-colIndex2=2;
-vectorAdded=0:1:19;
-
-[X,Y]=loadFiles(strcat(defaultDirectory,fileNameCounted),vectorAdded,true,' ',colIndex1,colIndex2,populationSize);
-[X1,Y1]=loadFiles(strcat(defaultDirectory,fileNameFitness),1,false,' ',1,4,50);
-
-hold;
-plot(1:1:size(Y),Y(:,1),'r');
-plot(1:1:size(Y),Y(:,10),'b');
-plot(1:1:size(Y),Y(:,20),'g');
-saveas(gcf,'GenFitness','jpg')
-hold;
-
-figure
-plot(X1,Y1);
-saveas(gcf,'AllGenFitness','jpg');
+leg = {'original','incgen','incpop','incpopgen','Location','NorthEastOutside'};
+plotmygraph(defaultDirectory,{originFitness,incgenFitness,incpopFitness,incpopgenFitness},'graph1',{[1 4],[1 4],[1 4],[1 4]},[50 50 100 100],{'r+','g+','b','y'},leg,[0 8000 6 13],{'Function evaluations','Objective value'});
+leg = {'originalincsize','incpopgensize','Location','NorthEastOutside'};
+plotmygraph(defaultDirectory,{originincsizeFitness,incpopgensizeFitness},'graph2',{[1 4],[1 4]},[50 100],{'r','b'},leg,[0 8000 10 25],{'Function evaluations','Objective value'});

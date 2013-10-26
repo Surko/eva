@@ -1,4 +1,4 @@
-﻿param (
+param (
     [string[]]$logfileNames,
     [string[]]$legendNames,
     [string]$output = "graph.png",
@@ -31,5 +31,5 @@ $plot = $plot.Substring(0,$plot.Length - 1);
 $plot = $plot + "
 		set output
 		set term wxt"
-
+		
 $plot | gnuplot.exe

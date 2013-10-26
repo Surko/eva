@@ -10,8 +10,8 @@ function [ X, Y ] = loadFiles( file, fileCount, isAdded, delimiter, colindex1, c
     else
         for I = fileCount
             data=importdata(file,delimiter);        
-            X(:,I+1)=data(:,colindex1);
-            Y(:,I+1)=data(:,colindex2);
+            X(:,I)=data(:,colindex1);
+            Y(:,I)=data(:,colindex2);
         end        
     end
 end

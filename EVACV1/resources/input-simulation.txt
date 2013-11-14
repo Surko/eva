@@ -1,0 +1,17 @@
+AlwaysCooperate 10
+AlwaysDeceive 10
+TitForTat 10
+EyeForEye 10
+FuckMeFuckYou 10
+HonzuvDecieve 10
+RCDeceive 10
+EarnLess2ByObrazek 10
+MK 10
+FloopStrategy 10
+Musilt05 10
+MaxipesFik 10
+OptimisticPessimist 10
+Musilt04 10
+Kajinek 10
+IvanovaStrategy 10
+Other 10

@@ -16,6 +16,30 @@ import java.util.Vector;
 
 public class StatsLogger {
 
+    public static ArrayList<Individual> logFitnessAndObjective(Population pop, OutputStreamWriter fout,OutputStreamWriter oout) {
+        ArrayList<Individual> sortedIndividuals = pop.getSortedIndividuals();
+        double bestFitness = sortedIndividuals.get(0).getFitnessValue();
+        double bestObject = sortedIndividuals.get(0).getObjectiveValue();
+        
+        double fitnessSum = 0,objSum = 0;
+        for (Individual ch : sortedIndividuals) {
+            fitnessSum += ch.getFitnessValue();
+            objSum += ch.getObjectiveValue();
+        }
+
+        double averageFitness = fitnessSum / pop.getPopulationSize();
+        double averageObj = objSum / pop.getPopulationSize();
+        
+        try {
+            fout.write("" + bestFitness + " " + averageFitness + System.getProperty("line.separator"));
+            oout.write("" + bestObject + " " + averageObj + System.getProperty("line.separator"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+                                
+        return sortedIndividuals;
+    }
+    
     /**
      * Logs the information on fitness in the population. Writes one line to the
      * out stream. This line contains two numbers: the fitness of the best individual

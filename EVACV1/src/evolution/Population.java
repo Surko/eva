@@ -65,6 +65,10 @@ public class Population implements Cloneable {
         this.sampleIndividual = sample;
     }
 
+    public ArrayList<Individual> getIndividuals() {
+        return individuals;
+    }
+    
     /**
      * Sets the population size, used only during the random initialization.
      *

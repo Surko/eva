@@ -42,7 +42,7 @@ public class BiasedMutation implements Operator{
             if (rng.nextDouble() < mutationProbability) {
                 for (int j = 0; j < o1.length(); j++) {
                     if (rng.nextDouble() < geneChangeProbability) {
-                        o1.set(j, (Double)o1.get(j) + sigma * (RandomNumberGenerator.getInstance().nextGaussian()-mean));
+                        o1.set(j, (Double)o1.get(j) + sigma * (mean - RandomNumberGenerator.getInstance().nextGaussian()));
                     }
                 }
             }

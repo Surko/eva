@@ -8,6 +8,7 @@ import evolution.StatsLogger;
 import evolution.individuals.Individual;
 import evolution.individuals.IntegerIndividual;
 import evolution.operators.IntegerMutation;
+import evolution.operators.MyOperator;
 import evolution.operators.OnePtXOver;
 import evolution.selectors.RouletteWheelSelector;
 import evolution.selectors.TournamentSelector;
@@ -133,7 +134,8 @@ public class Hromadky {
             ea.addMatingSelector(new TournamentSelector());
             ea.setElite(0.15);
             ea.addOperator(new OnePtXOver(xoverProb));
-            ea.addOperator(new IntegerMutation(mutProb, mutProbPerBit));
+            //ea.addOperator(new IntegerMutation(mutProb, mutProbPerBit));
+            ea.addOperator(new MyOperator(weights,mutProb,mutProbPerBit));           
             ea.addEnvironmentalSelector(new TournamentSelector());
 
             OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fitnessFilePrefix + "." + iter));

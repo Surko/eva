@@ -3,10 +3,8 @@ package evolution.real;
 import evolution.*;
 import evolution.individuals.RealIndividual;
 import evolution.operators.AveragingCrossoverOperator;
-import evolution.operators.BiasedMutation;
+import evolution.operators.DifferentialEvolution;
 import evolution.operators.GaussianMutationOperator;
-import evolution.operators.PolynomialMutationOperator;
-import evolution.operators.UnBiasedMutation;
 import evolution.real.functions.*;
 import evolution.selectors.TournamentSelector;
 
@@ -62,10 +60,10 @@ public class Real {
         repeats = Integer.parseInt(prop.getProperty("xset.repeats", "10"));
 
         ArrayList<RealFunction> functions = new ArrayList<RealFunction>();
-        functions.add(new F01SphereFunction(dimension));
-        functions.add(new F02EllipsoidalFunction(dimension));
+        //functions.add(new F01SphereFunction(dimension));
+        //functions.add(new F02EllipsoidalFunction(dimension));       
+        //functions.add(new F03RastriginFunction(dimension));
         /*
-        functions.add(new F03RastriginFunction(dimension));
         functions.add(new F04BucheRastriginFunction(dimension));
         functions.add(new F05LinearSlope(dimension));
         
@@ -75,7 +73,10 @@ public class Real {
         functions.add(new F09RosenbrockRotatedFunction(dimension));
         functions.add(new F10EllipsoidalRotatedFunction(dimension));
         functions.add(new F11DiscusFunction(dimension));
-        functions.add(new F12BentCigarFunction(dimension));
+        */                
+        //functions.add(new F12BentCigarFunction(dimension));
+        
+        /*
         functions.add(new F13SharpRidgeFunction(dimension));
         functions.add(new F14DifferentPowersFunction(dimension));
         functions.add(new F15RastriginNonseparableFunction(dimension));
@@ -83,7 +84,11 @@ public class Real {
         functions.add(new F17SchaffersF7Function(dimension));
         functions.add(new F18SchaffersF7IllConditionedFunction(dimension));
         functions.add(new F19CompositeGriewankRosenbrockF8F2Function(dimension));
+        */
+        
         functions.add(new F20SchwefelFunction(dimension));
+        
+        /*
         functions.add(new F21GallaghersGaussian101PeaksFunction(dimension));
         functions.add(new F22GallaghersGaussian21HiPeaksFunction(dimension));
         functions.add(new F23KatsuuraFunction(dimension));
@@ -136,9 +141,19 @@ public class Real {
             ea.addMatingSelector(new MySelector());
             ea.addOperator(new AveragingCrossoverOperator(xoverProb));
             //ea.addOperator(new PolynomialMutationOperator(mutProb, mutSigma));
-            //ea.addOperator(new UnBiasedMutation(mutProb, mutSigma,10));
-            ea.addOperator(new BiasedMutation(mutProb, mutSigma,-1,1));
+            //ea.addOperator(new GaussianMutationOperator(mutProb, mutSigma));
+            // 1st Cvicenie
+            // ea.addOperator(new UnBiasedMutation(mutProb, mutSigma,5));            
+            // ea.addOperator(new BiasedMutation(mutProb, mutSigma,-1,1));
+            // ea.addOperator(new AdaptiveMutationUnBiased(mutProb, mutSigma, 5, rf));
+            // ea.addOperator(new AdaptiveMutationBiased(mutProb, mutSigma, -1, 1, rf));
+            // 2nd Cvicenie
+            ea.addOperator(new DifferentialEvolution(1, 0.1, dimension, rf));
+            // 3rd Cvicenie
+            // ea.addOperator(new Lamarck(mutProb,mutSigma,rf));
+            // ea.setFitnessFunction(new Baldwinist(rf));
             ea.setFitnessFunction(new RealFitnessFunction(rf));
+            
             ea.addEnvironmentalSelector(new TournamentSelector());
             ea.setElite(eliteSize);
 

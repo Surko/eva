@@ -46,11 +46,27 @@ public class HromadkyFitness implements FitnessFunction {
                 max = binWeights[i];
             }
         }
-
-        ind.setObjectiveValue(max - min);    // tohle doporucuji zachovat
-
+                        
+        ind.setObjectiveValue(max - min);    // tohle doporucuji zachovat        
         //sem muzete vlozit vlastni vypocet fitness, muzete samozrejme vyuzit spocitane hmotnosti hromadek
-
-        return 1 / (max - min);
+        double mean = 0d, sum = 0d, var = 0d;
+        
+        for (int i = 0; i < K; i++) {
+            
+            sum += binWeights[i];
+            
+        }
+        
+        mean = sum / K;
+        
+        for (int i = 0; i < K; i++) {
+            
+            var += Math.pow(mean-binWeights[i],2);
+            
+        }
+        
+        var = Math.sqrt(var / (K-1));        
+        
+        return 1 / var;
     }
 }
